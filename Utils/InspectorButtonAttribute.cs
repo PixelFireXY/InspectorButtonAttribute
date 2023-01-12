@@ -1,26 +1,17 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// This attribute can only be applied to fields because its
-/// associated PropertyDrawer only operates on fields (either
-/// public or tagged with the [SerializeField] attribute) in
-/// the target MonoBehaviour.
-/// SOURCE: https://www.reddit.com/r/Unity3D/comments/1s6czv/inspectorbutton_add_a_custom_button_to_your/
-/// </summary>
 [System.AttributeUsage(System.AttributeTargets.Field)]
 public class InspectorButtonAttribute : PropertyAttribute
 {
-    public static float kDefaultButtonWidth = 80;
-
     /// <summary>
     /// The name of the method we call if the button is pressed.
     /// </summary>
-    public readonly string MethodName;
+    public string MethodName { get; set; }
 
     /// <summary>
-    /// Customize the width of the button.
+    /// The parameters to give at the method called.
     /// </summary>
-    public float ButtonWidth { get; set; } = kDefaultButtonWidth;
+    public object[] Parameters { get; set; }
 
     /// <summary>
     /// Customize the text of the button.
